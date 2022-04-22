@@ -28,14 +28,18 @@ public class HoldScript : MonoBehaviour
             if (playerNumber == playerNum.Player1)
             {
                 currentKey = KeyboardKey.W;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player2)
             {
                 currentKey = KeyboardKey.I;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player3)
             {
                 currentKey = KeyboardKey.UpArrow;
+                char arrow = '\u2191';
+                text.text = arrow.ToString();
             }
         }
         else if (num == 2)
@@ -43,14 +47,18 @@ public class HoldScript : MonoBehaviour
             if (playerNumber == playerNum.Player1)
             {
                 currentKey = KeyboardKey.A;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player2)
             {
                 currentKey = KeyboardKey.J;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player3)
             {
                 currentKey = KeyboardKey.LeftArrow;
+                char arrow = '\u2190';
+                text.text = arrow.ToString();
             }
         }
         else if (num == 3)
@@ -58,14 +66,18 @@ public class HoldScript : MonoBehaviour
             if (playerNumber == playerNum.Player1)
             {
                 currentKey = KeyboardKey.S;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player2)
             {
                 currentKey = KeyboardKey.K;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player3)
             {
                 currentKey = KeyboardKey.DownArrow;
+                char arrow = '\u2193';
+                text.text = arrow.ToString();
             }
         }
         else if (num == 4)
@@ -73,18 +85,22 @@ public class HoldScript : MonoBehaviour
             if (playerNumber == playerNum.Player1)
             {
                 currentKey = KeyboardKey.D;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player2)
             {
                 currentKey = KeyboardKey.L;
+                text.text = currentKey.ToString();
             }
             else if (playerNumber == playerNum.Player3)
             {
                 currentKey = KeyboardKey.RightArrow;
+                char arrow = '\u2192';
+                text.text = arrow.ToString();
             }
         }
 
-        text.text = currentKey.ToString();
+        
 
     }
 
