@@ -10,6 +10,8 @@ TagManager:
   - Player3
   - Hold2
   - Hold3
+  - GameManager
+  - Timer
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public playerNum numPlayer;
+    public int playerNumInt;
     public int index = 0;
     public KeyboardKey nextKey;
     public KeyboardKey currentPressedKey;
@@ -19,23 +20,28 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool keyPressed = false;
     public GameObject finishText;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
         startPos.position = new Vector3(startPos.position.x, startPos.position.y + 1.7f, startPos.position.z);
         if (numPlayer == playerNum.Player1)
         {
             keys = GameObject.FindGameObjectsWithTag("Hold");
+            playerNumInt = 1;
         }
         else if (numPlayer == playerNum.Player2)
         {
             keys = GameObject.FindGameObjectsWithTag("Hold2");
+            playerNumInt = 2;
         }
         else if (numPlayer == playerNum.Player3)
         {
             keys = GameObject.FindGameObjectsWithTag("Hold3");
+            playerNumInt = 3;
         }
         //System.Array.Reverse(keys);
         nextKey = keys[index].GetComponent<HoldScript>().currentKey;
@@ -62,8 +68,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    finishedGame = true;
-                    finishText.SetActive(true);
+                    FinishGame();
+                    gameManager.playersFinished.Add(playerNumInt);
                 }
             }
         }
@@ -259,5 +265,11 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Idle");
             }
         }
+    }
+
+    public void FinishGame()
+    {
+        finishedGame = true;
+        finishText.SetActive(true);
     }
 }
