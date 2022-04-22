@@ -9,12 +9,15 @@ public class HoldScript : MonoBehaviour
 {
     [SerializeField]
     public KeyboardKey currentKey;
+    public GameObject circle;
+    public bool isNext = false;
     private TextMeshProUGUI text;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        circle.SetActive(false);
         text = GetComponentInChildren<TextMeshProUGUI>();
         int num = Random.Range(1, 5);
         if (num == 1)
@@ -55,6 +58,13 @@ public class HoldScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isNext)
+        {
+            circle.SetActive(true);
+        }
+        else
+        {
+            circle.SetActive(false);
+        }
     }
 }
