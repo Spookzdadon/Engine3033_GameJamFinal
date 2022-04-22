@@ -29,6 +29,6 @@ public class Timer : MonoBehaviour
         }
         float seconds = Mathf.FloorToInt(timeValue % 60);
         //timerText.text = seconds.ToString();
-        timerText.text = timeValue.ToString("F2");
+        timerText.text = timeValue.ToString("F1");
     }
 }
