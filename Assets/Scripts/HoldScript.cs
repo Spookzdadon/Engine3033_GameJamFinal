@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum KeyboardKey { None, W, A, S, D};
+public enum KeyboardKey { None, W, A, S, D, I, J, K, L, UpArrow, LeftArrow, DownArrow, RightArrow};
+public enum playerNum { Player1, Player2, Player3 };
 
 public class HoldScript : MonoBehaviour
 {
     [SerializeField]
     public KeyboardKey currentKey;
+    [SerializeField]
+    public playerNum playerNumber;
     public GameObject circle;
     public bool isNext = false;
     private TextMeshProUGUI text;
@@ -22,36 +25,66 @@ public class HoldScript : MonoBehaviour
         int num = Random.Range(1, 5);
         if (num == 1)
         {
-            currentKey = KeyboardKey.W;
+            if (playerNumber == playerNum.Player1)
+            {
+                currentKey = KeyboardKey.W;
+            }
+            else if (playerNumber == playerNum.Player2)
+            {
+                currentKey = KeyboardKey.I;
+            }
+            else if (playerNumber == playerNum.Player3)
+            {
+                currentKey = KeyboardKey.UpArrow;
+            }
         }
         else if (num == 2)
         {
-            currentKey = KeyboardKey.A;
+            if (playerNumber == playerNum.Player1)
+            {
+                currentKey = KeyboardKey.A;
+            }
+            else if (playerNumber == playerNum.Player2)
+            {
+                currentKey = KeyboardKey.J;
+            }
+            else if (playerNumber == playerNum.Player3)
+            {
+                currentKey = KeyboardKey.LeftArrow;
+            }
         }
         else if (num == 3)
         {
-            currentKey = KeyboardKey.S;
+            if (playerNumber == playerNum.Player1)
+            {
+                currentKey = KeyboardKey.S;
+            }
+            else if (playerNumber == playerNum.Player2)
+            {
+                currentKey = KeyboardKey.K;
+            }
+            else if (playerNumber == playerNum.Player3)
+            {
+                currentKey = KeyboardKey.DownArrow;
+            }
         }
         else if (num == 4)
         {
-            currentKey = KeyboardKey.D;
+            if (playerNumber == playerNum.Player1)
+            {
+                currentKey = KeyboardKey.D;
+            }
+            else if (playerNumber == playerNum.Player2)
+            {
+                currentKey = KeyboardKey.L;
+            }
+            else if (playerNumber == playerNum.Player3)
+            {
+                currentKey = KeyboardKey.RightArrow;
+            }
         }
 
-        switch (currentKey)
-        {
-            case KeyboardKey.W:
-                text.text = "W";
-                break;
-            case KeyboardKey.A:
-                text.text = "A";
-                break;
-            case KeyboardKey.S:
-                text.text = "S";
-                break;
-            case KeyboardKey.D:
-                text.text = "D";
-                break;
-        }
+        text.text = currentKey.ToString();
 
     }
 

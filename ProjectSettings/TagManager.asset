@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hold
+  - Player1
+  - Player2
+  - Player3
+  - Hold2
+  - Hold3
   layers:
   - Default
   - TransparentFX
