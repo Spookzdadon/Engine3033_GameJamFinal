@@ -105,13 +105,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.anyKeyDown)
         {
-            if (currentPressedKey == nextKey && (isDoneClimbingUp || isDoneClimbingDown) && index < keys.Length)
+            if (currentPressedKey == nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length)
             {
                 isDoneClimbingUp = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
                 index++;
             }
-            else if (currentPressedKey != nextKey && (isDoneClimbingUp || isDoneClimbingDown))
+            else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown)
             {
                 isDoneClimbingDown = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
