@@ -21,10 +21,12 @@ public class PlayerController : MonoBehaviour
     private bool keyPressed = false;
     public GameObject finishText;
     private GameManager gameManager;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
         startPos.position = new Vector3(startPos.position.x, startPos.position.y + 1.7f, startPos.position.z);
@@ -234,8 +236,9 @@ public class PlayerController : MonoBehaviour
 
         if (keyPressed)
         {
-            if (currentPressedKey == nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length)
+            if (currentPressedKey == nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length && !finishedGame)
             {
+                audioSource.Play();
                 isDoneClimbingUp = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
                 if (index % 2 == 0)
@@ -248,7 +251,7 @@ public class PlayerController : MonoBehaviour
                 }
                 index++;
             }
-            else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length)
+            else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length && !finishedGame)
             {
                 isDoneClimbingDown = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;

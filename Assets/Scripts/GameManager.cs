@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Timer timer;
     public bool isGameActive = true;
     public int smallestNum = 0;
+    public AudioSource gameAudioSource;
+    public AudioSource music;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,6 @@ public class GameManager : MonoBehaviour
                 foreach (GameObject player in playerList)
                 {
                     player.GetComponent<PlayerController>().FinishGame();
-                    //playersFinished.Add(player.GetComponent<PlayerController>().playerNumInt);
                     playerIndex.Add(player.GetComponent<PlayerController>().index);
                     playerIndex.Sort();
                     playerIndex.Reverse();
@@ -66,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator FinishGame()
     {
+        music.Stop();
+        gameAudioSource.Play();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("2PlayerEndScene");
     }

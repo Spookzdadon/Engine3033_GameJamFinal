@@ -15,6 +15,7 @@ public class WinScene : MonoBehaviour
     void Start()
     {
         playerWinOrder = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().playersFinished;
+        Destroy(GameObject.FindGameObjectWithTag("GameManager"));
         //playerWinOrder = new List<int> { 1, 2 };
         for (int i = 0; i < playerWinOrder.Count; i++)
         {
