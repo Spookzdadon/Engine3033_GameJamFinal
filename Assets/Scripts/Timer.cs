@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     {
         if (timeValue > 0)
         {
-            timeValue -= Time.deltaTime;
+            timeValue -= 0.8f * Time.deltaTime;
 
         }
         else
