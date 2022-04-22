@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Transform startPos;
     private Animator animator;
     private bool keyPressed = false;
+    public GameObject finishText;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!isDoneClimbingUp)
         {
             Vector3 tempLocation = new Vector3(transform.position.x, nextKeyPos.position.y - 1.2f, nextKeyPos.position.z);
@@ -59,6 +60,11 @@ public class PlayerController : MonoBehaviour
                     nextKey = keys[index].GetComponent<HoldScript>().currentKey;
                     keys[index].GetComponent<HoldScript>().isNext = true;
                 }
+                else
+                {
+                    finishedGame = true;
+                    finishText.SetActive(true);
+                }
             }
         }
 
@@ -72,7 +78,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-               tempTransform = keys[index - 1].transform;
+                tempTransform = keys[index - 1].transform;
             }
             Vector3 tempLocation = new Vector3(transform.position.x, tempTransform.position.y - 1.2f, tempTransform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, tempLocation, speed * Time.deltaTime);
@@ -226,9 +232,9 @@ public class PlayerController : MonoBehaviour
             {
                 isDoneClimbingUp = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
-                if (index%2==0)
+                if (index % 2 == 0)
                 {
-                        animator.SetTrigger("ClimbLeft");
+                    animator.SetTrigger("ClimbLeft");
                 }
                 else
                 {
