@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public int index = 0;
     public KeyboardKey nextKey;
     public KeyboardKey currentPressedKey;
-    public GameObject[] keys;
+    public List<GameObject> keys;
     public Transform nextKeyPos;
     public bool isDoneClimbingUp = true;
     public bool isDoneClimbingDown = true;
@@ -32,17 +32,14 @@ public class PlayerController : MonoBehaviour
         startPos.position = new Vector3(startPos.position.x, startPos.position.y + 1.7f, startPos.position.z);
         if (numPlayer == playerNum.Player1)
         {
-            keys = GameObject.FindGameObjectsWithTag("Hold");
             playerNumInt = 1;
         }
         else if (numPlayer == playerNum.Player2)
         {
-            keys = GameObject.FindGameObjectsWithTag("Hold2");
             playerNumInt = 2;
         }
         else if (numPlayer == playerNum.Player3)
         {
-            keys = GameObject.FindGameObjectsWithTag("Hold3");
             playerNumInt = 3;
         }
         //System.Array.Reverse(keys);
@@ -62,7 +59,7 @@ public class PlayerController : MonoBehaviour
             if (Vector3.Distance(transform.position, tempLocation) < 0.001f)
             {
                 isDoneClimbingUp = true;
-                if (index < keys.Length)
+                if (index < keys.Count)
                 {
                     nextKeyPos = keys[index].transform;
                     nextKey = keys[index].GetComponent<HoldScript>().currentKey;
@@ -236,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
         if (keyPressed)
         {
-            if (currentPressedKey == nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length && !finishedGame)
+            if (currentPressedKey == nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Count && !finishedGame)
             {
                 audioSource.Play();
                 isDoneClimbingUp = false;
@@ -251,7 +248,7 @@ public class PlayerController : MonoBehaviour
                 }
                 index++;
             }
-            else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Length && !finishedGame)
+            else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown && index < keys.Count && !finishedGame)
             {
                 isDoneClimbingDown = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
