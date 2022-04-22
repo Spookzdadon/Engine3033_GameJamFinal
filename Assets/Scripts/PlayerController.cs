@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     public bool isDoneClimbingDown = true;
     public float speed;
     public Transform startPos;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos.position = new Vector3(startPos.position.x, startPos.position.y + 1.2f, startPos.position.z);
+        animator = GetComponent<Animator>();
+        startPos.position = new Vector3(startPos.position.x, startPos.position.y + 1.7f, startPos.position.z);
         keys = GameObject.FindGameObjectsWithTag("Hold");
         //System.Array.Reverse(keys);
         nextKey = keys[index].GetComponent<HoldScript>().currentKey;
@@ -109,13 +111,21 @@ public class PlayerController : MonoBehaviour
             {
                 isDoneClimbingUp = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
+                if (index%2==0)
+                {
+                        animator.SetTrigger("ClimbLeft");
+                }
+                else
+                {
+                    animator.SetTrigger("ClimbRight");
+                }
                 index++;
             }
             else if (currentPressedKey != nextKey && isDoneClimbingUp && isDoneClimbingDown)
             {
                 isDoneClimbingDown = false;
                 keys[index].GetComponent<HoldScript>().isNext = false;
-                if (index <= 1)
+                if (index <= 2)
                 {
                     index = 0;
                 }
@@ -125,6 +135,7 @@ public class PlayerController : MonoBehaviour
                 }
                 nextKey = keys[index].GetComponent<HoldScript>().currentKey;
                 nextKeyPos = keys[index].transform;
+                animator.SetTrigger("Idle");
             }
         }
     }
